@@ -1,2 +1,1 @@
-# inventory-management-dashboard
-A dashboard analyzing inventory
+# INVENTORY MANAGEMENT DASHBOARD
