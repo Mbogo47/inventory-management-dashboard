@@ -1,0 +1,1347 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20243.24.1112.0850                               -->
+<workbook original-version='18.1' source-build='2024.3.1 (20243.24.1112.0850)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AnimationOnByDefault />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='cleaned inventory' inline='true' name='federated.0obrl8215v7sd614gkzv20mtftbr' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='cleaned inventory' name='textscan.1q1yivz1jldtxm1eojwjf15azxg0'>
+            <connection class='textscan' directory='Data/inventoryDB' filename='cleaned inventory.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.1q1yivz1jldtxm1eojwjf15azxg0' name='cleaned inventory.csv' table='[cleaned inventory#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_KE' separator=','>
+            <column datatype='string' name='Product Id' ordinal='0' />
+            <column datatype='string' name='Product Name' ordinal='1' />
+            <column datatype='string' name='Category' ordinal='2' />
+            <column datatype='integer' name='Sales Quantity' ordinal='3' />
+            <column datatype='integer' name='Current Stock Quantity' ordinal='4' />
+            <column datatype='integer' name='Reorder level' ordinal='5' />
+            <column datatype='string' name='Supplier ID' ordinal='6' />
+            <column datatype='string' name='Warehouse Location' ordinal='7' />
+            <column datatype='date' name='Stock Movement Date' ordinal='8' />
+            <column datatype='date' name='Sales Date' ordinal='9' />
+            <column datatype='integer' name='Sales Revenue' ordinal='10' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;Ksh&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_KE&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Product Id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Product Id]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Product Id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Product Name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Product Name]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Product Name</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Category]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Category</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sales Quantity</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Sales Quantity]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Sales Quantity</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Current Stock Quantity</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Current Stock Quantity]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Current Stock Quantity</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Reorder level</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Reorder level]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Reorder level</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Supplier ID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Supplier ID]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Supplier ID</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Warehouse Location</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Warehouse Location]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Warehouse Location</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Stock Movement Date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[Stock Movement Date]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Stock Movement Date</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sales Date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[Sales Date]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Sales Date</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sales Revenue</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Sales Revenue]</local-name>
+            <parent-name>[cleaned inventory.csv]</parent-name>
+            <remote-alias>Sales Revenue</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Reorder Status' datatype='string' name='[Calculation_1289718387086069760]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='if AVG([Current Stock Quantity])&lt;= AVG([Calculation_1289718387097505795]) THEN &quot;Restock&quot;&#13;&#10;ELSE &quot;sufficient&quot;&#13;&#10;END' />
+      </column>
+      <column caption='reorder new' datatype='integer' name='[Calculation_1289718387097505795]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='CASE [Product Name]&#13;&#10;WHEN  &quot;Accessory I&quot; THEN 60&#13;&#10;WHEN  &quot;Accessory J&quot; THEN 75&#13;&#10;WHEN  &quot;Gadget D&quot; THEN 65&#13;&#10;WHEN  &quot;Gadget E&quot; THEN 65&#13;&#10;WHEN  &quot;Tool F&quot; THEN 60&#13;&#10;WHEN  &quot;Tool G&quot; THEN 80&#13;&#10;WHEN  &quot;Tool H&quot; THEN 84&#13;&#10;WHEN  &quot;Widget A&quot; THEN 85&#13;&#10;WHEN  &quot;Widget B&quot; THEN 75&#13;&#10;WHEN  &quot;Widget C&quot; THEN 90&#13;&#10;&#13;&#10;END' />
+      </column>
+      <column caption='Stock Turnover Rate' datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Calculation_1289718387110174724]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='AVG([Sales Quantity])/AVG([Current Stock Quantity])' />
+      </column>
+      <column caption='Fast/slow Moving' datatype='string' name='[Calculation_1289718387112202245]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='If [Calculation_1289718387110174724] &gt;= 1.25 THEN &quot;Fast Moving&quot;&#13;&#10;ELSE &quot;Slow Moving&quot; END' />
+      </column>
+      <column caption='Stock measure' datatype='string' name='[Calculation_483292578853392384]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='IF AVG([Current Stock Quantity]) &lt; AVG([Calculation_1289718387097505795]) THEN &quot;Out of stock&quot;&#13;&#10;ELSEIF AVG([Current Stock Quantity]) &gt; AVG([Calculation_1289718387097505795] * 4.5) THEN &quot;Excessive stock&quot;&#13;&#10;ELSE &quot;sufficient&quot;&#13;&#10;END' />
+      </column>
+      <column caption='Stock Accuracy Rate' datatype='real' name='[Calculation_483292578864537601]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='1 - ABS([Current Stock Quantity] - [Reorder level]) / [Reorder level]' />
+      </column>
+      <column caption='Average Delivery time' datatype='real' name='[Calculation_483292578864885762]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='AVG(DATEDIFF(&apos;day&apos;,  [Sales Date], [Stock Movement Date]))' />
+      </column>
+      <column caption=' fullfillment rate ' datatype='real' default-format='p0.00%' name='[Calculation_483292578865725444]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Current Stock Quantity]) / SUM([Reorder level])' />
+      </column>
+      <column caption='Order Consistency' datatype='string' default-format='n#,##0.00;-#,##0.00' name='[Calculation_483292578871803909]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='IF SUM([Sales Quantity]) / SUM([Current Stock Quantity]) &gt; 1.25 THEN &quot;Consistent&quot; &#13;&#10;ELSE &quot;Inconsistent&quot;&#13;&#10;END' />
+      </column>
+      <column caption='Stock Accuracy' datatype='real' name='[Calculation_483292578875588614]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='(([Sales Quantity]/ ([Current Stock Quantity] + [Sales Quantity]))) * 100' />
+      </column>
+      <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+      <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+      <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+      <column caption='cleaned inventory.csv' datatype='table' name='[__tableau_internal_object_id__].[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]' role='measure' type='quantitative' />
+      <column-instance column='[Calculation_483292578875588614]' derivation='Avg' name='[avg:Calculation_483292578875588614:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Sales Quantity]' derivation='Avg' name='[avg:Sales Quantity:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Current Stock Quantity]' derivation='Count' name='[cnt:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Current Stock Quantity]' derivation='CountD' name='[ctd:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_483292578853392384]' derivation='None' name='[none:Calculation_483292578853392384:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Current Stock Quantity]' derivation='None' name='[none:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Current Stock Quantity]' derivation='Sum' name='[sum:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Sales Quantity]' derivation='Sum' name='[sum:Sales Quantity:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1289718387110174724]' derivation='User' name='[usr:Calculation_1289718387110174724:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_483292578864885762]' derivation='User' name='[usr:Calculation_483292578864885762:qk]' pivot='key' type='quantitative' />
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:Product Name:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Accessory I&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Tool F&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Gadget E&quot;</bucket>
+            </map>
+            <map to='#9c755f'>
+              <bucket>&quot;Widget B&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;Tool H&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;Widget C&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Gadget D&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Tool G&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Accessory J&quot;</bucket>
+            </map>
+            <map to='#ff9da7'>
+              <bucket>&quot;Widget A&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[cnt:Current Stock Quantity:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[ctd:Current Stock Quantity:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Current Stock Quantity:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Calculation_1289718387091030017:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Current Stock Quantity:qk]&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Calculation_483292578875588614:qk]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578864885762:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387110174724:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Sales Quantity:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Sales Quantity:qk]&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_483292578853392384:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Excessive Stock&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;sufficient&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Excessive stock&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Sufficient&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Out of stock&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Kenya&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='cleaned inventory.csv' id='cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48'>
+            <properties context=''>
+              <relation connection='textscan.1q1yivz1jldtxm1eojwjf15azxg0' name='cleaned inventory.csv' table='[cleaned inventory#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_KE' separator=','>
+                  <column datatype='string' name='Product Id' ordinal='0' />
+                  <column datatype='string' name='Product Name' ordinal='1' />
+                  <column datatype='string' name='Category' ordinal='2' />
+                  <column datatype='integer' name='Sales Quantity' ordinal='3' />
+                  <column datatype='integer' name='Current Stock Quantity' ordinal='4' />
+                  <column datatype='integer' name='Reorder level' ordinal='5' />
+                  <column datatype='string' name='Supplier ID' ordinal='6' />
+                  <column datatype='string' name='Warehouse Location' ordinal='7' />
+                  <column datatype='date' name='Stock Movement Date' ordinal='8' />
+                  <column datatype='date' name='Sales Date' ordinal='9' />
+                  <column datatype='integer' name='Sales Revenue' ordinal='10' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Inflow Vs Outflow'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption='Reorder Status' datatype='string' name='[Calculation_1289718387086069760]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='if AVG([Current Stock Quantity])&lt;= AVG([Calculation_1289718387097505795]) THEN &quot;Restock&quot;&#13;&#10;ELSE &quot;sufficient&quot;&#13;&#10;END' />
+            </column>
+            <column caption='reorder new' datatype='integer' name='[Calculation_1289718387097505795]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='CASE [Product Name]&#13;&#10;WHEN  &quot;Accessory I&quot; THEN 60&#13;&#10;WHEN  &quot;Accessory J&quot; THEN 75&#13;&#10;WHEN  &quot;Gadget D&quot; THEN 65&#13;&#10;WHEN  &quot;Gadget E&quot; THEN 65&#13;&#10;WHEN  &quot;Tool F&quot; THEN 60&#13;&#10;WHEN  &quot;Tool G&quot; THEN 80&#13;&#10;WHEN  &quot;Tool H&quot; THEN 84&#13;&#10;WHEN  &quot;Widget A&quot; THEN 85&#13;&#10;WHEN  &quot;Widget B&quot; THEN 75&#13;&#10;WHEN  &quot;Widget C&quot; THEN 90&#13;&#10;&#13;&#10;END' />
+            </column>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+            <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column datatype='date' name='[Stock Movement Date]' role='dimension' type='ordinal' />
+            <column-instance column='[Calculation_1289718387086069760]' derivation='None' name='[none:Calculation_1289718387086069760:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Current Stock Quantity]' derivation='Sum' name='[sum:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sales Date]' derivation='Month-Trunc' name='[tmn:Sales Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Stock Movement Date]' derivation='Month-Trunc' name='[tmn:Stock Movement Date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
+            <groupfilter function='member' level='[none:Product Name:nk]' member='&quot;Accessory I&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Calculation_1289718387086069760:nk]' />
+              <text column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0obrl8215v7sd614gkzv20mtftbr].[tmn:Sales Date:ok] / [federated.0obrl8215v7sd614gkzv20mtftbr].[tmn:Stock Movement Date:ok])</rows>
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Current Stock Quantity:qk]</cols>
+      </table>
+      <simple-id uuid='{171928C7-BD52-40AC-9014-91DC08BA0A22}' />
+    </worksheet>
+    <worksheet name='Inventory Overview'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption='Reorder Status' datatype='string' name='[Calculation_1289718387086069760]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='if AVG([Current Stock Quantity])&lt;= AVG([Calculation_1289718387097505795]) THEN &quot;Restock&quot;&#13;&#10;ELSE &quot;sufficient&quot;&#13;&#10;END' />
+            </column>
+            <column caption='reorder new' datatype='integer' name='[Calculation_1289718387097505795]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='CASE [Product Name]&#13;&#10;WHEN  &quot;Accessory I&quot; THEN 60&#13;&#10;WHEN  &quot;Accessory J&quot; THEN 75&#13;&#10;WHEN  &quot;Gadget D&quot; THEN 65&#13;&#10;WHEN  &quot;Gadget E&quot; THEN 65&#13;&#10;WHEN  &quot;Tool F&quot; THEN 60&#13;&#10;WHEN  &quot;Tool G&quot; THEN 80&#13;&#10;WHEN  &quot;Tool H&quot; THEN 84&#13;&#10;WHEN  &quot;Widget A&quot; THEN 85&#13;&#10;WHEN  &quot;Widget B&quot; THEN 75&#13;&#10;WHEN  &quot;Widget C&quot; THEN 90&#13;&#10;&#13;&#10;END' />
+            </column>
+            <column datatype='string' name='[Category]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[Reorder level]' role='measure' type='quantitative' />
+            <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column-instance column='[Calculation_1289718387097505795]' derivation='Avg' name='[avg:Calculation_1289718387097505795:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Reorder level]' derivation='Avg' name='[avg:Reorder level:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sales Date]' derivation='Month' name='[mn:Sales Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Category]' derivation='None' name='[none:Category:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1289718387086069760]' derivation='User' name='[usr:Calculation_1289718387086069760:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Calculation_1289718387097505795:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Reorder level:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
+            <groupfilter function='level-members' level='[none:Product Name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' value='374' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' />
+              <text column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0obrl8215v7sd614gkzv20mtftbr].[mn:Sales Date:ok] / [federated.0obrl8215v7sd614gkzv20mtftbr].[none:Category:nk])</rows>
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]</cols>
+      </table>
+      <simple-id uuid='{64EA5521-52DA-4439-9CD8-B1160A452C39}' />
+    </worksheet>
+    <worksheet name='Monthly Sales Vs Inventory Level'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column-instance column='[Sales Date]' derivation='Month-Trunc' name='[tmn:Sales Date:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[tmn:Sales Date:qk]</cols>
+      </table>
+      <simple-id uuid='{29CCAE15-C548-4590-A0A7-8576636CAB78}' />
+    </worksheet>
+    <worksheet name='Sales &amp; Inventory Trends'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+            <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+            <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Current Stock Quantity]' derivation='Sum' name='[sum:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sales Quantity]' derivation='Sum' name='[sum:Sales Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sales Date]' derivation='Month-Trunc' name='[tmn:Sales Date:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
+            <groupfilter function='member' level='[none:Product Name:nk]' member='&quot;Accessory I&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Sales Quantity:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' />
+            </encodings>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Current Stock Quantity:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' />
+            </encodings>
+          </pane>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Sales Quantity:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Current Stock Quantity:qk] + [federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Sales Quantity:qk])</rows>
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[tmn:Sales Date:qk]</cols>
+      </table>
+      <simple-id uuid='{81BC1AA6-4574-4D0A-B25D-73AB5E86288D}' />
+    </worksheet>
+    <worksheet name='Sheet 12'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption='Average Delivery time' datatype='real' name='[Calculation_483292578864885762]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='AVG(DATEDIFF(&apos;day&apos;,  [Sales Date], [Stock Movement Date]))' />
+            </column>
+            <column caption=' fullfillment rate ' datatype='real' default-format='p0.00%' name='[Calculation_483292578865725444]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Current Stock Quantity]) / SUM([Reorder level])' />
+            </column>
+            <column caption='Order Consistency' datatype='string' default-format='n#,##0.00;-#,##0.00' name='[Calculation_483292578871803909]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='IF SUM([Sales Quantity]) / SUM([Current Stock Quantity]) &gt; 1.25 THEN &quot;Consistent&quot; &#13;&#10;ELSE &quot;Inconsistent&quot;&#13;&#10;END' />
+            </column>
+            <column caption='Stock Accuracy' datatype='real' name='[Calculation_483292578875588614]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='(([Sales Quantity]/ ([Current Stock Quantity] + [Sales Quantity]))) * 100' />
+            </column>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[Reorder level]' role='measure' type='quantitative' />
+            <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+            <column datatype='date' name='[Stock Movement Date]' role='dimension' type='ordinal' />
+            <column datatype='string' name='[Supplier ID]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_483292578875588614]' derivation='Avg' name='[avg:Calculation_483292578875588614:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Supplier ID]' derivation='None' name='[none:Supplier ID:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_483292578864885762]' derivation='User' name='[usr:Calculation_483292578864885762:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_483292578865725444]' derivation='User' name='[usr:Calculation_483292578865725444:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_483292578871803909]' derivation='User' name='[usr:Calculation_483292578871803909:ok]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578864885762:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Calculation_483292578875588614:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578864885762:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Calculation_483292578875588614:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578865725444:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578871803909:ok]' />
+              <text column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Supplier ID:nk]</rows>
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]</cols>
+      </table>
+      <simple-id uuid='{849A29E2-C38E-44A7-8C36-AD8B3F58A937}' />
+    </worksheet>
+    <worksheet name='Sheet 13'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption='Order Consistency' datatype='string' default-format='n#,##0.00;-#,##0.00' name='[Calculation_483292578871803909]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='IF SUM([Sales Quantity]) / SUM([Current Stock Quantity]) &gt; 1.25 THEN &quot;Consistent&quot; &#13;&#10;ELSE &quot;Inconsistent&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Supplier ID]' role='dimension' type='nominal' />
+            <column-instance column='[Supplier ID]' derivation='None' name='[none:Supplier ID:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_483292578871803909]' derivation='User' name='[usr:Calculation_483292578871803909:ok]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578871803909:ok]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Supplier ID:nk]</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{5DE48A4E-1DE9-417F-AFF4-5DD4B3F24688}' />
+    </worksheet>
+    <worksheet name='Sheet 8'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption='reorder new' datatype='integer' name='[Calculation_1289718387097505795]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='CASE [Product Name]&#13;&#10;WHEN  &quot;Accessory I&quot; THEN 60&#13;&#10;WHEN  &quot;Accessory J&quot; THEN 75&#13;&#10;WHEN  &quot;Gadget D&quot; THEN 65&#13;&#10;WHEN  &quot;Gadget E&quot; THEN 65&#13;&#10;WHEN  &quot;Tool F&quot; THEN 60&#13;&#10;WHEN  &quot;Tool G&quot; THEN 80&#13;&#10;WHEN  &quot;Tool H&quot; THEN 84&#13;&#10;WHEN  &quot;Widget A&quot; THEN 85&#13;&#10;WHEN  &quot;Widget B&quot; THEN 75&#13;&#10;WHEN  &quot;Widget C&quot; THEN 90&#13;&#10;&#13;&#10;END' />
+            </column>
+            <column caption='Stock measure' datatype='string' name='[Calculation_483292578853392384]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='IF AVG([Current Stock Quantity]) &lt; AVG([Calculation_1289718387097505795]) THEN &quot;Out of stock&quot;&#13;&#10;ELSEIF AVG([Current Stock Quantity]) &gt; AVG([Calculation_1289718387097505795] * 4.5) THEN &quot;Excessive stock&quot;&#13;&#10;ELSE &quot;sufficient&quot;&#13;&#10;END' />
+            </column>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+            <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column-instance column='[Sales Date]' derivation='MY' name='[my:Sales Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Current Stock Quantity]' derivation='Sum' name='[sum:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_483292578853392384]' derivation='User' name='[usr:Calculation_483292578853392384:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]'>
+            <groupfilter function='member' level='[my:Sales Date:ok]' member='202411' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578853392384:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Current Stock Quantity:qk]</rows>
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</cols>
+      </table>
+      <simple-id uuid='{F5651AEA-60B4-43C6-B0E8-E46799143720}' />
+    </worksheet>
+    <worksheet name='Sheet 9'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption=' fullfillment rate ' datatype='real' default-format='p0.00%' name='[Calculation_483292578865725444]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Current Stock Quantity]) / SUM([Reorder level])' />
+            </column>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[Reorder level]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Supplier ID]' role='dimension' type='nominal' />
+            <column-instance column='[Supplier ID]' derivation='None' name='[none:Supplier ID:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_483292578865725444]' derivation='User' name='[usr:Calculation_483292578865725444:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='on' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <size column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578865725444:qk]' />
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578865725444:qk]' />
+              <text column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Supplier ID:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-line-first' value='true' />
+                <format attr='mark-labels-line-last' value='true' />
+                <format attr='mark-labels-range-min' value='true' />
+                <format attr='mark-labels-range-max' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-range-scope' value='pane' />
+                <format attr='mark-labels-range-field' value='' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{CD74826F-88A3-48C3-9E76-F06EA6648239}' />
+    </worksheet>
+    <worksheet name='Slow Vs Fast'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption='Stock Turnover Rate' datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Calculation_1289718387110174724]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='AVG([Sales Quantity])/AVG([Current Stock Quantity])' />
+            </column>
+            <column caption='Fast/slow Moving' datatype='string' name='[Calculation_1289718387112202245]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='If [Calculation_1289718387110174724] &gt;= 1.25 THEN &quot;Fast Moving&quot;&#13;&#10;ELSE &quot;Slow Moving&quot; END' />
+            </column>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+            <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sales Quantity]' derivation='Avg' name='[avg:Sales Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1289718387110174724]' derivation='User' name='[usr:Calculation_1289718387110174724:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1289718387112202245]' derivation='User' name='[usr:Calculation_1289718387112202245:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Sales Quantity:qk]' field-type='quantitative' fold='true' scope='rows' synchronized='true' type='space' />
+            <format attr='display' class='0' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Sales Quantity:qk]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' />
+              <text column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387110174724:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' />
+              <text column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387110174724:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Sales Quantity:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' />
+              <text column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387110174724:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-transparency' value='126' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk] + [federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Sales Quantity:qk])</rows>
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</cols>
+      </table>
+      <simple-id uuid='{A2FE099A-C86F-4C03-89A3-A6DF9A5CC36F}' />
+    </worksheet>
+    <worksheet name='Stock Movement'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption='Reorder Status' datatype='string' name='[Calculation_1289718387086069760]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='if AVG([Current Stock Quantity])&lt;= AVG([Calculation_1289718387097505795]) THEN &quot;Restock&quot;&#13;&#10;ELSE &quot;sufficient&quot;&#13;&#10;END' />
+            </column>
+            <column caption='reorder new' datatype='integer' name='[Calculation_1289718387097505795]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='CASE [Product Name]&#13;&#10;WHEN  &quot;Accessory I&quot; THEN 60&#13;&#10;WHEN  &quot;Accessory J&quot; THEN 75&#13;&#10;WHEN  &quot;Gadget D&quot; THEN 65&#13;&#10;WHEN  &quot;Gadget E&quot; THEN 65&#13;&#10;WHEN  &quot;Tool F&quot; THEN 60&#13;&#10;WHEN  &quot;Tool G&quot; THEN 80&#13;&#10;WHEN  &quot;Tool H&quot; THEN 84&#13;&#10;WHEN  &quot;Widget A&quot; THEN 85&#13;&#10;WHEN  &quot;Widget B&quot; THEN 75&#13;&#10;WHEN  &quot;Widget C&quot; THEN 90&#13;&#10;&#13;&#10;END' />
+            </column>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+            <column datatype='date' name='[Stock Movement Date]' role='dimension' type='ordinal' />
+            <column datatype='string' name='[Warehouse Location]' role='dimension' type='nominal' />
+            <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sales Quantity]' derivation='Avg' name='[avg:Sales Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Stock Movement Date]' derivation='None' name='[none:Stock Movement Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Warehouse Location]' derivation='None' name='[none:Warehouse Location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1289718387086069760]' derivation='User' name='[usr:Calculation_1289718387086069760:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
+            <groupfilter function='member' level='[none:Product Name:nk]' member='&quot;Accessory J&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+            <groupfilter function='member' level='[none:Warehouse Location:nk]' member='&quot;Warehouse A&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' domain-expand='false' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Sales Quantity:qk]' field-type='quantitative' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]' field-type='quantitative' fold='true' scope='rows' synchronized='true' type='space' />
+            <format attr='display' class='0' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]' scope='rows' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' />
+            </encodings>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Sales Quantity:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#00ffff' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Sales Quantity:qk] + [federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk])</rows>
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Stock Movement Date:qk]</cols>
+      </table>
+      <simple-id uuid='{191987D6-F500-4CCA-ADD3-E09D78FF97D8}' />
+    </worksheet>
+    <worksheet name='Sufficient Stock'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned inventory' name='federated.0obrl8215v7sd614gkzv20mtftbr' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0obrl8215v7sd614gkzv20mtftbr'>
+            <column caption='Reorder Status' datatype='string' name='[Calculation_1289718387086069760]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='if AVG([Current Stock Quantity])&lt;= AVG([Calculation_1289718387097505795]) THEN &quot;Restock&quot;&#13;&#10;ELSE &quot;sufficient&quot;&#13;&#10;END' />
+            </column>
+            <column caption='reorder new' datatype='integer' name='[Calculation_1289718387097505795]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='CASE [Product Name]&#13;&#10;WHEN  &quot;Accessory I&quot; THEN 60&#13;&#10;WHEN  &quot;Accessory J&quot; THEN 75&#13;&#10;WHEN  &quot;Gadget D&quot; THEN 65&#13;&#10;WHEN  &quot;Gadget E&quot; THEN 65&#13;&#10;WHEN  &quot;Tool F&quot; THEN 60&#13;&#10;WHEN  &quot;Tool G&quot; THEN 80&#13;&#10;WHEN  &quot;Tool H&quot; THEN 84&#13;&#10;WHEN  &quot;Widget A&quot; THEN 85&#13;&#10;WHEN  &quot;Widget B&quot; THEN 75&#13;&#10;WHEN  &quot;Widget C&quot; THEN 90&#13;&#10;&#13;&#10;END' />
+            </column>
+            <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+            <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sales Date]' derivation='MY' name='[my:Sales Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1289718387086069760]' derivation='User' name='[usr:Calculation_1289718387086069760:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]'>
+            <groupfilter function='member' level='[my:Sales Date:ok]' member='202403' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]</rows>
+        <cols>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</cols>
+      </table>
+      <simple-id uuid='{E9B470AB-B550-400A-87C3-545F6B06E893}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='44'>
+    <window class='worksheet' name='Monthly Sales Vs Inventory Level'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{D059E242-ADF6-47C6-B746-A114CA3F2AAE}' />
+    </window>
+    <window class='worksheet' name='Inflow Vs Outflow'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='dropdown' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{6E93D281-BE79-4B81-9FC1-04F71AEEC6EE}' />
+    </window>
+    <window class='worksheet' name='Inventory Overview'>
+      <cards>
+        <edge name='left'>
+          <strip size='100'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='100'>
+            <card mode='dropdown' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type='filter' />
+            <card pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{FF823B2D-5274-4A79-8F6B-75740AEA3117}' />
+    </window>
+    <window class='worksheet' name='Sales &amp; Inventory Trends'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='dropdown' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{18B91BC3-AB5C-416B-AC90-966DBC01A011}' />
+    </window>
+    <window class='worksheet' name='Stock Movement'>
+      <cards>
+        <edge name='left'>
+          <strip size='174'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='20'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='106'>
+            <card mode='dropdown' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]' type='filter' />
+            <card mode='dropdown' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{265CABC3-3788-4740-9EB0-1897301137CC}' />
+    </window>
+    <window class='worksheet' name='Sufficient Stock'>
+      <cards>
+        <edge name='left'>
+          <strip size='149'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='20'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='106'>
+            <card mode='dropdown' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]' type='filter' />
+            <card pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{7707079A-8207-4CD9-ABA9-F8B3FACF2BC2}' />
+    </window>
+    <window class='worksheet' name='Slow Vs Fast'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='1' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{127E7D43-8B1A-459B-9B6B-6965987B5694}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Sheet 8'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]' type='filter' />
+            <card pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578853392384:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{76AD37E9-209F-4E04-9610-8736262F34CF}' />
+    </window>
+    <window class='worksheet' name='Sheet 9'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578865725444:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{5DBC60B8-C0A6-4E90-BA14-5825FB03D937}' />
+    </window>
+    <window class='worksheet' name='Sheet 12'>
+      <cards>
+        <edge name='left'>
+          <strip size='254'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578871803909:ok]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <simple-id uuid='{8F378057-052F-472D-B5C2-0882B09F7326}' />
+    </window>
+    <window class='worksheet' name='Sheet 13'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <simple-id uuid='{03AE95BC-D42A-4F0D-9FF8-82C6910EFE80}' />
+    </window>
+  </windows>
+</workbook>
