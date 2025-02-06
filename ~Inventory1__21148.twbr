@@ -15,6 +15,7 @@
     <SheetIdentifierTracking />
     <SortTagCleanup />
     <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
     <ZoneBackgroundTransparency />
   </document-format-change-manifest>
   <preferences>
@@ -255,7 +256,10 @@
       </column>
       <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
       <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
+      <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
       <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+      <column datatype='date' name='[Stock Movement Date]' role='dimension' type='ordinal' />
+      <column datatype='string' name='[Supplier ID]' role='dimension' type='nominal' />
       <column caption='cleaned inventory.csv' datatype='table' name='[__tableau_internal_object_id__].[cleaned inventory.csv_DF7381A413F44233ACBA28F31736AC48]' role='measure' type='quantitative' />
       <column-instance column='[Calculation_483292578875588614]' derivation='Avg' name='[avg:Calculation_483292578875588614:qk]' pivot='key' type='quantitative' />
       <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
@@ -264,15 +268,31 @@
       <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
       <column-instance column='[Current Stock Quantity]' derivation='Sum' name='[sum:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
       <column-instance column='[Sales Quantity]' derivation='Sum' name='[sum:Sales Quantity:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Sales Date]' derivation='Month-Trunc' name='[tmn:Sales Date:ok]' pivot='key' type='ordinal' />
       <column-instance column='[Calculation_1289718387086069760]' derivation='User' name='[usr:Calculation_1289718387086069760:nk]' pivot='key' type='nominal' />
       <column-instance column='[Calculation_1289718387110174724]' derivation='User' name='[usr:Calculation_1289718387110174724:qk]' pivot='key' type='quantitative' />
       <column-instance column='[Calculation_1289718387112202245]' derivation='User' name='[usr:Calculation_1289718387112202245:nk]' pivot='key' type='nominal' />
       <column-instance column='[Calculation_483292578853392384]' derivation='User' name='[usr:Calculation_483292578853392384:nk]' pivot='key' type='nominal' />
       <column-instance column='[Calculation_483292578864885762]' derivation='User' name='[usr:Calculation_483292578864885762:qk]' pivot='key' type='quantitative' />
       <column-instance column='[Calculation_483292578871803909]' derivation='User' name='[usr:Calculation_483292578871803909:nk]' pivot='key' type='nominal' />
+      <group caption='Action (MONTH(Sales Date))' hidden='true' name='[Action (MONTH(Sales Date))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[tmn:Sales Date:ok]' />
+        </groupfilter>
+      </group>
       <group caption='Action (Product Name)' hidden='true' name='[Action (Product Name)]' name-style='unqualified' user:auto-column='sheet_link'>
         <groupfilter function='crossjoin'>
           <groupfilter function='level-members' level='[Product Name]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Stock Movement Date)' hidden='true' name='[Action (Stock Movement Date)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Stock Movement Date]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Supplier ID)' hidden='true' name='[Action (Supplier ID)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Supplier ID]' />
         </groupfilter>
       </group>
       <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
@@ -327,6 +347,14 @@
               <bucket>&quot;Out of stock&quot;</bucket>
             </map>
           </encoding>
+          <encoding attr='color' field='[usr:Calculation_483292578853392384:nk]' type='palette'>
+            <map to='#28a745'>
+              <bucket>&quot;Over Stocked&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Out of Stock&quot;</bucket>
+            </map>
+          </encoding>
           <encoding attr='color' field='[:Measure Names]' type='palette'>
             <map to='#4e79a7'>
               <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[avg:Current Stock Quantity:qk]&quot;</bucket>
@@ -353,14 +381,6 @@
               <bucket>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Sales Quantity:qk]&quot;</bucket>
             </map>
           </encoding>
-          <encoding attr='color' field='[usr:Calculation_1289718387086069760:nk]' type='palette'>
-            <map to='#28a745'>
-              <bucket>&quot;sufficient&quot;</bucket>
-            </map>
-            <map to='#dc3545'>
-              <bucket>&quot;Restock&quot;</bucket>
-            </map>
-          </encoding>
           <encoding attr='color' field='[usr:Calculation_1289718387112202245:nk]' type='palette'>
             <map to='#28a745'>
               <bucket>&quot;Fast Moving&quot;</bucket>
@@ -369,12 +389,12 @@
               <bucket>&quot;Slow Moving&quot;</bucket>
             </map>
           </encoding>
-          <encoding attr='color' field='[usr:Calculation_483292578853392384:nk]' type='palette'>
+          <encoding attr='color' field='[usr:Calculation_1289718387086069760:nk]' type='palette'>
             <map to='#28a745'>
-              <bucket>&quot;Over Stocked&quot;</bucket>
+              <bucket>&quot;sufficient&quot;</bucket>
             </map>
-            <map to='#e15759'>
-              <bucket>&quot;Out of Stock&quot;</bucket>
+            <map to='#dc3545'>
+              <bucket>&quot;Restock&quot;</bucket>
             </map>
           </encoding>
           <encoding attr='color' field='[usr:Calculation_483292578871803909:nk]' type='palette'>
@@ -459,17 +479,9 @@
         <param name='target' value='Inventory Analysis' />
       </command>
     </action>
-    <action caption='Filter 4 (generated)' name='[Action4_1544B3937DC84E8F843A19F241D15E9B]'>
-      <activation auto-clear='true' type='on-select' />
-      <source dashboard='Supply chain management' type='sheet' worksheet='Out of stock Vs Over-stocked' />
-      <command command='tsc:tsl-filter'>
-        <param name='special-fields' value='all' />
-        <param name='target' value='Supply chain management' />
-      </command>
-    </action>
     <action caption='Filter 5 (generated)' name='[Action5_9BE93E1ED78E4F03A1FFD63ADC5C5A64]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Supply chain management' type='sheet' worksheet='Sufficient Stock' />
+      <source dashboard='Supply chain management' type='sheet' worksheet='Stock levels' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
         <param name='target' value='Supply chain management' />
@@ -530,6 +542,9 @@
             <column-instance column='[Warehouse Location]' derivation='None' name='[none:Warehouse Location:nk]' pivot='key' type='nominal' />
             <column-instance column='[Calculation_483292578865725444]' derivation='User' name='[usr:Calculation_483292578865725444:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Supplier ID)]'>
+            <groupfilter function='level-members' level='[Supplier ID]' user:ui-action-filter='[Action1_8C7D96FC1A86402789E79DF1E5C8DDC4]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
             <groupfilter function='level-members' level='[none:Product Name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
@@ -537,6 +552,7 @@
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Supplier ID)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -634,7 +650,7 @@
             </dictionary>
           </manual-sort>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
-            <groupfilter function='member' level='[none:Product Name:nk]' member='&quot;Gadget D&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[none:Product Name:nk]' member='&quot;Tool G&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]</column>
@@ -694,6 +710,7 @@
             <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
             <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
             <column datatype='integer' name='[Sales Revenue]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Supplier ID]' role='dimension' type='nominal' />
             <column datatype='string' name='[Warehouse Location]' role='dimension' type='nominal' />
             <column-instance column='[Sales Date]' derivation='MY' name='[my:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
@@ -709,6 +726,9 @@
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Sales Revenue:qk]&quot;' />
             </groupfilter>
           </filter>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Supplier ID)]'>
+            <groupfilter function='level-members' level='[Supplier ID]' user:ui-action-filter='[Action1_8C7D96FC1A86402789E79DF1E5C8DDC4]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
             <groupfilter function='level-members' level='[none:Product Name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
@@ -717,6 +737,7 @@
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Supplier ID)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -856,15 +877,23 @@
             <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
             <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
             <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column datatype='date' name='[Stock Movement Date]' role='dimension' type='ordinal' />
             <column datatype='string' name='[Warehouse Location]' role='dimension' type='nominal' />
             <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Sales Date]' derivation='MY' name='[my:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
             <column-instance column='[Warehouse Location]' derivation='None' name='[none:Warehouse Location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Sales Date]' derivation='Month-Trunc' name='[tmn:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Calculation_483292578853392384]' derivation='User' name='[usr:Calculation_483292578853392384:nk]' pivot='key' type='nominal' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (MONTH(Sales Date))]'>
+            <groupfilter function='level-members' level='[tmn:Sales Date:ok]' user:ui-action-filter='[Action7_C54F0B7596544E9A9E239D4E482E2CEE]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]'>
             <groupfilter function='level-members' level='[Product Name]' user:ui-action-filter='[Action5_9BE93E1ED78E4F03A1FFD63ADC5C5A64]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Stock Movement Date)]'>
+            <groupfilter function='level-members' level='[Stock Movement Date]' user:ui-action-filter='[Action8_8F49805CFBCB47FD9DF4ECD83C000363]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
             <groupfilter function='level-members' level='[none:Product Name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
@@ -874,6 +903,8 @@
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (MONTH(Sales Date))]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Stock Movement Date)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -949,6 +980,7 @@
             <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
             <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
             <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+            <column datatype='date' name='[Stock Movement Date]' role='dimension' type='ordinal' />
             <column datatype='string' name='[Warehouse Location]' role='dimension' type='nominal' />
             <column-instance column='[Sales Date]' derivation='MY' name='[my:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
@@ -960,6 +992,9 @@
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]'>
             <groupfilter function='level-members' level='[Product Name]' user:ui-action-filter='[Action4_1544B3937DC84E8F843A19F241D15E9B]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Stock Movement Date)]'>
+            <groupfilter function='level-members' level='[Stock Movement Date]' user:ui-action-filter='[Action8_8F49805CFBCB47FD9DF4ECD83C000363]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
             <groupfilter function='level-members' level='[none:Product Name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
@@ -968,6 +1003,7 @@
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Stock Movement Date)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1006,6 +1042,11 @@
             <format attr='line-visibility' scope='rows' value='off' />
             <format attr='stroke-size' scope='cols' value='0' />
             <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' value=''>
+              <formatted-text />
+            </format>
           </style-rule>
         </style>
         <panes>
@@ -1074,17 +1115,25 @@
             <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
             <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
             <column datatype='integer' name='[Sales Quantity]' role='measure' type='quantitative' />
+            <column datatype='date' name='[Stock Movement Date]' role='dimension' type='ordinal' />
             <column datatype='string' name='[Warehouse Location]' role='dimension' type='nominal' />
             <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Sales Quantity]' derivation='Avg' name='[avg:Sales Quantity:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Sales Date]' derivation='MY' name='[my:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
             <column-instance column='[Warehouse Location]' derivation='None' name='[none:Warehouse Location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Sales Date]' derivation='Month-Trunc' name='[tmn:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Calculation_1289718387110174724]' derivation='User' name='[usr:Calculation_1289718387110174724:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Calculation_1289718387112202245]' derivation='User' name='[usr:Calculation_1289718387112202245:nk]' pivot='key' type='nominal' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (MONTH(Sales Date))]'>
+            <groupfilter function='level-members' level='[tmn:Sales Date:ok]' user:ui-action-filter='[Action7_C54F0B7596544E9A9E239D4E482E2CEE]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]'>
             <groupfilter function='level-members' level='[Product Name]' user:ui-action-filter='[Action4_1544B3937DC84E8F843A19F241D15E9B]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Stock Movement Date)]'>
+            <groupfilter function='level-members' level='[Stock Movement Date]' user:ui-action-filter='[Action8_8F49805CFBCB47FD9DF4ECD83C000363]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
             <groupfilter function='level-members' level='[none:Product Name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
@@ -1094,6 +1143,8 @@
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (MONTH(Sales Date))]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Stock Movement Date)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1129,6 +1180,11 @@
             <format attr='line-visibility' scope='rows' value='off' />
             <format attr='stroke-size' scope='cols' value='0' />
             <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' value=''>
+              <formatted-text />
+            </format>
           </style-rule>
         </style>
         <panes>
@@ -1219,8 +1275,12 @@
             <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
             <column-instance column='[Stock Movement Date]' derivation='None' name='[none:Stock Movement Date:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Warehouse Location]' derivation='None' name='[none:Warehouse Location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Sales Date]' derivation='Month-Trunc' name='[tmn:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Calculation_1289718387086069760]' derivation='User' name='[usr:Calculation_1289718387086069760:nk]' pivot='key' type='nominal' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (MONTH(Sales Date))]'>
+            <groupfilter function='level-members' level='[tmn:Sales Date:ok]' user:ui-action-filter='[Action7_C54F0B7596544E9A9E239D4E482E2CEE]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]'>
             <groupfilter function='level-members' level='[Product Name]' user:ui-action-filter='[Action4_1544B3937DC84E8F843A19F241D15E9B]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
@@ -1232,6 +1292,7 @@
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (MONTH(Sales Date))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1271,6 +1332,11 @@
             <format attr='line-visibility' scope='cols' value='off' />
             <format attr='stroke-size' scope='rows' value='0' />
             <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' value=''>
+              <formatted-text />
+            </format>
           </style-rule>
         </style>
         <panes>
@@ -1316,11 +1382,11 @@
       </table>
       <simple-id uuid='{191987D6-F500-4CCA-ADD3-E09D78FF97D8}' />
     </worksheet>
-    <worksheet name='Sufficient Stock'>
+    <worksheet name='Stock levels'>
       <layout-options>
         <title>
           <formatted-text>
-            <run fontalignment='1'>Sufficient Stock</run>
+            <run fontalignment='1'>Stock levels</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -1339,24 +1405,40 @@
             <column datatype='integer' name='[Current Stock Quantity]' role='measure' type='quantitative' />
             <column datatype='string' name='[Product Name]' role='dimension' type='nominal' />
             <column datatype='date' name='[Sales Date]' role='dimension' type='ordinal' />
+            <column datatype='date' name='[Stock Movement Date]' role='dimension' type='ordinal' />
             <column datatype='string' name='[Warehouse Location]' role='dimension' type='nominal' />
             <column-instance column='[Current Stock Quantity]' derivation='Avg' name='[avg:Current Stock Quantity:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Sales Date]' derivation='MY' name='[my:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
             <column-instance column='[Warehouse Location]' derivation='None' name='[none:Warehouse Location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Sales Date]' derivation='Month-Trunc' name='[tmn:Sales Date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[Calculation_1289718387086069760]' derivation='User' name='[usr:Calculation_1289718387086069760:nk]' pivot='key' type='nominal' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (MONTH(Sales Date))]'>
+            <groupfilter function='level-members' level='[tmn:Sales Date:ok]' user:ui-action-filter='[Action7_C54F0B7596544E9A9E239D4E482E2CEE]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]'>
             <groupfilter function='level-members' level='[Product Name]' user:ui-action-filter='[Action4_1544B3937DC84E8F843A19F241D15E9B]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Stock Movement Date)]'>
+            <groupfilter function='level-members' level='[Stock Movement Date]' user:ui-action-filter='[Action8_8F49805CFBCB47FD9DF4ECD83C000363]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
             <groupfilter function='level-members' level='[none:Product Name:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
+          <manual-sort column='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Restock&quot;</bucket>
+              <bucket>&quot;sufficient&quot;</bucket>
+            </dictionary>
+          </manual-sort>
           <slices>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Product Name)]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]</column>
             <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (MONTH(Sales Date))]</column>
+            <column>[federated.0obrl8215v7sd614gkzv20mtftbr].[Action (Stock Movement Date)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1382,6 +1464,11 @@
           <style-rule element='zeroline'>
             <format attr='stroke-size' value='0' />
             <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' value=''>
+              <formatted-text />
+            </format>
           </style-rule>
         </style>
         <panes>
@@ -1471,7 +1558,13 @@
           </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578871803909:nk]' value=''>
+              <formatted-text />
+            </format>
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
@@ -1501,11 +1594,11 @@
       <size sizing-mode='automatic' />
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='98178' id='3' param='vert' type-v2='layout-flow' w='98992' x='504' y='911'>
-            <zone fixed-size='65' h='7403' id='19' is-fixed='true' param='horz' type-v2='layout-flow' w='98992' x='504' y='911'>
-              <zone h='7403' id='20' type-v2='text' w='90806' x='504' y='911'>
+          <zone h='98178' id='3' param='vert' type-v2='layout-flow' w='99002' x='499' y='911'>
+            <zone fixed-size='56' h='6378' id='19' is-fixed='true' param='horz' type-v2='layout-flow' w='99002' x='499' y='911'>
+              <zone forceUpdate='true' h='6378' id='20' type-v2='text' w='92020' x='499' y='911'>
                 <formatted-text>
-                  <run fontsize='14'>Inventory Analysis</run>
+                  <run fontalignment='1' fontname='Tableau Bold' fontsize='20'>Inventory Analysis</run>
                 </formatted-text>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
@@ -1514,7 +1607,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='7403' id='22' type-v2='dashboard-object' w='4093' x='91310' y='911'>
+              <zone h='6378' id='22' type-v2='dashboard-object' w='3491' x='92519' y='911'>
                 <button action='tabdoc:goto-sheet window-id=&quot;{36A53F32-50DB-42B4-A0F6-6DC15EFD00A1}&quot;'>
                   <button-visual-state>
                     <image-path>Image/arrows-left-6-48.png</image-path>
@@ -1527,7 +1620,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='7403' id='21' type-v2='dashboard-object' w='4093' x='95403' y='911'>
+              <zone h='6378' id='21' type-v2='dashboard-object' w='3491' x='96010' y='911'>
                 <button action='tabdoc:goto-sheet window-id=&quot;{778AF177-9332-4FC4-8345-CC0875B58CB1}&quot;'>
                   <button-visual-state>
                     <image-path>Image/arrows-right-6-48.png</image-path>
@@ -1541,9 +1634,9 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone fixed-size='265' h='30182' id='9' is-fixed='true' param='horz' type-v2='layout-flow' w='98992' x='504' y='8314'>
-              <zone h='30182' id='12' name='KPIs' w='98992' x='504' y='8314'>
-                <layout-cache cell-count-w='3' non-cell-size-w='2' type-h='cell' type-w='cell' />
+            <zone fixed-size='174' h='19818' id='9' is-fixed='true' param='horz' type-v2='layout-flow' w='99002' x='499' y='7289'>
+              <zone h='19818' id='12' name='KPIs' show-title='false' w='99002' x='499' y='7289'>
+                <layout-cache cell-count-h='1' cell-count-w='3' non-cell-size-h='40' type-h='cell' type-w='cell' />
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1552,24 +1645,8 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone h='9567' id='17' param='horz' type-v2='layout-flow' w='98992' x='504' y='38496'>
-              <zone h='9567' id='14' name='Inventory Fulfillment ' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578865725444:qk]' type-v2='color' w='24495' x='504' y='38496'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone fixed-size='920' h='9567' id='18' is-fixed='true' type-v2='empty' w='58439' x='24999' y='38496'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone fixed-size='247' h='9567' id='16' is-fixed='true' name='Supplier Performance' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578871803909:nk]' type-v2='color' w='16058' x='83438' y='38496'>
+            <zone fixed-size='55' h='6264' id='17' is-fixed='true' param='horz' type-v2='layout-flow' w='99002' x='499' y='27107'>
+              <zone fixed-size='906' h='6264' id='27' is-fixed='true' type-v2='empty' w='99002' x='499' y='27107'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1578,9 +1655,9 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone fixed-size='401' h='45672' id='11' is-fixed='true' layout-strategy-id='distribute-evenly' param='horz' type-v2='layout-flow' w='98992' x='504' y='48063'>
-              <zone fixed-size='723' h='45672' id='13' is-fixed='true' name='Inventory Fulfillment ' w='49496' x='504' y='48064'>
-                <layout-cache fixed-size-h='392' type-h='fixed' type-w='fixed' />
+            <zone fixed-size='545' h='62073' id='11' is-fixed='true' layout-strategy-id='distribute-evenly' param='horz' type-v2='layout-flow' w='99002' x='499' y='33371'>
+              <zone fixed-size='723' h='62073' id='13' is-fixed='true' name='Inventory Fulfillment ' w='49501' x='499' y='33371'>
+                <layout-cache cell-count-h='1' non-cell-size-h='56' type-h='cell' type-w='fixed' />
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1588,7 +1665,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone fixed-size='500' h='45672' id='15' is-fixed='true' name='Supplier Performance' w='49496' x='50000' y='48064'>
+              <zone fixed-size='500' h='62073' id='15' is-fixed='true' name='Supplier Performance' w='49501' x='50000' y='33371'>
                 <layout-cache cell-count-h='10' non-cell-size-h='96' type-h='cell' type-w='fixed' />
                 <zone-style>
                   <format attr='border-color' value='#000000' />
@@ -1606,16 +1683,17 @@
             <format attr='margin' value='8' />
           </zone-style>
         </zone>
+        <zone fixed-size='185' h='5923' id='16' is-fixed='true' name='Supplier Performance' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578871803909:nk]' type-v2='color' w='34227' x='68579' y='27449' />
       </zones>
       <devicelayouts>
         <devicelayout auto-generated='true' name='Phone'>
-          <size maxheight='1200' minheight='1200' sizing-mode='vscroll' />
+          <size maxheight='1100' minheight='1100' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='26' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98178' id='25' param='vert' type-v2='layout-flow' w='98992' x='504' y='911'>
-                <zone h='7403' id='20' type-v2='text' w='90806' x='504' y='911'>
+            <zone h='100000' id='37' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='97390' id='36' param='vert' type-v2='layout-flow' w='98662' x='669' y='1305'>
+                <zone forceUpdate='true' h='9135' id='20' type-v2='text' w='89290' x='669' y='1305'>
                   <formatted-text>
-                    <run fontsize='14'>Inventory Analysis</run>
+                    <run fontalignment='1' fontname='Tableau Bold' fontsize='20'>Inventory Analysis</run>
                   </formatted-text>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -1625,7 +1703,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='7403' id='22' type-v2='dashboard-object' w='4093' x='91310' y='911'>
+                <zone h='9135' id='22' type-v2='dashboard-object' w='4686' x='89959' y='1305'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{36A53F32-50DB-42B4-A0F6-6DC15EFD00A1}&quot;'>
                     <button-visual-state>
                       <image-path>Image/arrows-left-6-48.png</image-path>
@@ -1639,7 +1717,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='7403' id='21' type-v2='dashboard-object' w='4093' x='95403' y='911'>
+                <zone h='9135' id='21' type-v2='dashboard-object' w='4686' x='94645' y='1305'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{778AF177-9332-4FC4-8345-CC0875B58CB1}&quot;'>
                     <button-visual-state>
                       <image-path>Image/arrows-right-6-48.png</image-path>
@@ -1653,8 +1731,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='233' h='30182' id='12' is-fixed='true' name='KPIs' w='98992' x='504' y='8314'>
-                  <layout-cache cell-count-w='3' non-cell-size-w='2' type-h='cell' type-w='cell' />
+                <zone fixed-size='219' h='28385' id='12' is-fixed='true' name='KPIs' show-title='false' w='98662' x='669' y='10440'>
+                  <layout-cache cell-count-w='3' type-h='cell' type-w='cell' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1663,8 +1741,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='280' h='45672' id='13' is-fixed='true' name='Inventory Fulfillment ' w='49496' x='504' y='48064'>
-                  <layout-cache fixed-size-h='392' type-h='fixed' type-w='fixed' />
+                <zone fixed-size='280' h='50897' id='13' is-fixed='true' name='Inventory Fulfillment ' w='49373' x='669' y='47798'>
+                  <layout-cache cell-count-h='1' non-cell-size-h='42' type-h='cell' type-w='fixed' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1673,7 +1751,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='9567' id='14' name='Inventory Fulfillment ' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578865725444:qk]' type-v2='color' w='24495' x='504' y='38496'>
+                <zone fixed-size='280' h='50897' id='15' is-fixed='true' name='Supplier Performance' w='49289' x='50042' y='47798'>
+                  <layout-cache cell-count-h='10' non-cell-size-h='82' type-h='cell' type-w='fixed' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1682,17 +1761,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='280' h='45672' id='15' is-fixed='true' name='Supplier Performance' w='49496' x='50000' y='48064'>
-                  <layout-cache cell-count-h='10' non-cell-size-h='96' type-h='cell' type-w='fixed' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone fixed-size='247' h='9567' id='16' name='Supplier Performance' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578871803909:nk]' type-v2='color' w='16058' x='83438' y='38496'>
+                <zone fixed-size='185' h='10277' id='16' name='Supplier Performance' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578871803909:nk]' type-v2='color' w='22078' x='76883' y='39641'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1714,6 +1783,288 @@
       </devicelayouts>
       <simple-id uuid='{56E974D2-A73C-4F49-B86C-2905EEBDB1DC}' />
     </dashboard>
+    <dashboard enable-sort-zone-taborder='true' name='Store Overview'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style />
+      <size sizing-mode='automatic' />
+      <zones>
+        <zone h='100000' id='2' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='75415' id='3' param='vert' type-v2='layout-flow' w='99002' x='499' y='12984'>
+            <zone h='75415' id='4' type-v2='layout-basic' w='99002' x='499' y='12984'>
+              <zone h='75415' id='6' param='horz' type-v2='layout-flow' w='99002' x='499' y='12984'>
+                <zone fixed-size='494' h='75415' id='9' is-fixed='true' param='vert' type-v2='layout-flow' w='30798' x='499' y='12984'>
+                  <zone h='63228' id='23' is-scaled='1' param='Image/download.png' type-v2='bitmap' w='30798' x='499' y='12984'>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone fixed-size='99' forceUpdate='true' h='12187' id='16' is-fixed='true' type-v2='text' w='30798' x='499' y='76212'>
+                    <formatted-text>
+                      <run bold='true' fontcolor='#0f4761' fontname='Aptos Display' fontsize='20'>Explore and Understand the store&apos;s Inventory</run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone fixed-size='24' h='75415' id='22' is-fixed='true' type-v2='empty' w='1995' x='31297' y='12984'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='75415' id='20' param='vert' type-v2='layout-flow' w='66209' x='33292' y='12984'>
+                  <zone fixed-size='80' forceUpdate='true' h='10023' id='19' is-fixed='true' type-v2='text' w='66209' x='33292' y='12984'>
+                    <formatted-text>
+                      <run bold='true' fontcolor='#0f4761' fontname='Aptos Display' fontsize='20'>Inventory Management Data</run>
+                      <run>Æ&#10;&#10;</run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone fixed-size='534' forceUpdate='true' h='61731' id='21' is-fixed='true' type-v2='text' w='66209' x='33292' y='23007'>
+                    <formatted-text>
+                      <run fontname='Aptos' fontsize='12'>This dataset contains inventory management  for different warehouses. Whether you are a warehouse manager, supply chain team, and inventory analysts these dashboards enable to monitor product availability, reorder levels, and stock movements. Also you will be able to  track inventory health, manage stock-out risks, and optimize product replenishment</run>
+                      <run>Æ&#10;&#10;&#10;</run>
+                      <run bold='true' fontcolor='#0f4761' fontname='Aptos' fontsize='12'>The Data consists of:</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Product ID</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Product Name</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Product Category</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Sales Quantity (for each product)</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Inventory Level (current stock quantity)</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Reorder Level (minimum stock level)</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Stock Movement Date</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Supplier ID</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Warehouse Location</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Sales Date</run>
+                      <run>Æ&#10;</run>
+                      <run fontname='Symbol' fontsize='12'>· </run>
+                      <run fontname='Aptos' fontsize='12'>Sales Revenue</run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone h='6537' id='12' param='horz' type-v2='layout-flow' w='99002' x='499' y='911'>
+            <zone forceUpdate='true' h='6537' id='15' type-v2='text' w='92830' x='499' y='911'>
+              <formatted-text>
+                <run fontalignment='1' fontname='Tableau Bold' fontsize='20'> Store Overview</run>
+              </formatted-text>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone fixed-size='91' h='6537' id='7' is-fixed='true' type-v2='empty' w='6172' x='93329' y='911'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone h='5536' id='13' type-v2='empty' w='99002' x='499' y='7448'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='10690' id='24' type-v2='empty' w='99002' x='499' y='88399'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <simple-id uuid='{5FA98A23-668E-49F7-8B2C-4BD292E08018}' />
+    </dashboard>
+    <dashboard name='Story 1' type='storyboard'>
+      <style />
+      <size sizing-mode='automatic' />
+      <zones>
+        <zone h='100000' id='2' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98454' id='1' param='vert' removable='false' type-v2='layout-flow' w='99166' x='417' y='773'>
+            <zone h='4831' id='3' type-v2='title' w='99166' x='417' y='773' />
+            <zone h='9758' id='4' is-fixed='true' paired-zone-id='5' removable='false' type-v2='flipboard-nav' w='99166' x='417' y='5604' />
+            <zone h='83865' id='5' paired-zone-id='4' removable='false' type-v2='flipboard' w='99166' x='417' y='15362'>
+              <flipboard active-id='5' nav-type='caption' show-nav-arrows='true'>
+                <story-points>
+                  <story-point caption='Mali Store Overview' captured-sheet='Store Overview' id='1' />
+                  <story-point caption='Inventory Overview' captured-sheet='Warehouse management' id='7'>
+                    <capturedDeltas>
+                      <worksheet name='Inventory Overview'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]'>
+                          <groupfilter function='member' level='[none:Product Name:nk]' member='&quot;Tool H&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                    </capturedDeltas>
+                  </story-point>
+                  <story-point caption='Inventory Analysis' captured-sheet='Inventory Analysis' id='6' />
+                  <story-point caption='Supply chain management' captured-sheet='Supply chain management' id='5'>
+                    <currentDeltas>
+                      <worksheet name='Out of stock Vs Over-stocked'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                      <worksheet name='Sales &amp; Inventory Trends'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                      <worksheet name='Slow Vs Fast'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                      <worksheet name='Stock Movement'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                        <selection-collection>
+                          <node-selection select-tuples='false'>
+                            <oriented-node-reference orientation='horizontal'>
+                              <node-reference>
+                                <axis>[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Stock Movement Date:qk]</axis>
+                              </node-reference>
+                              <page-reference />
+                            </oriented-node-reference>
+                          </node-selection>
+                        </selection-collection>
+                      </worksheet>
+                      <worksheet name='Stock levels'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                    </currentDeltas>
+                    <capturedDeltas>
+                      <worksheet name='Out of stock Vs Over-stocked'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                      <worksheet name='Sales &amp; Inventory Trends'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                        <selection-collection>
+                          <tuple-selection>
+                            <tuple-reference>
+                              <tuple-descriptor>
+                                <pane-descriptor>
+                                  <x-fields>
+                                    <field>[federated.0obrl8215v7sd614gkzv20mtftbr].[tmn:Sales Date:qk]</field>
+                                  </x-fields>
+                                  <y-fields>
+                                    <field>[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Current Stock Quantity:qk]</field>
+                                  </y-fields>
+                                </pane-descriptor>
+                                <columns>
+                                  <field>[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Current Stock Quantity:qk]</field>
+                                  <field>[federated.0obrl8215v7sd614gkzv20mtftbr].[tmn:Sales Date:qk]</field>
+                                  <field>[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]</field>
+                                </columns>
+                              </tuple-descriptor>
+                              <tuple>
+                                <value>20336</value>
+                                <value>#2025-02-01 00:00:00#</value>
+                                <value>&quot;[federated.0obrl8215v7sd614gkzv20mtftbr].[sum:Current Stock Quantity:qk]&quot;</value>
+                              </tuple>
+                            </tuple-reference>
+                          </tuple-selection>
+                        </selection-collection>
+                      </worksheet>
+                      <worksheet name='Slow Vs Fast'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                      <worksheet name='Stock Movement'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                      <worksheet name='Stock levels'>
+                        <filter class='categorical' column='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]'>
+                          <groupfilter function='level-members' level='[none:Warehouse Location:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+                        </filter>
+                      </worksheet>
+                    </capturedDeltas>
+                  </story-point>
+                </story-points>
+              </flipboard>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <simple-id uuid='{FFFC62E8-0390-4D8C-B253-D79E65676137}' />
+    </dashboard>
     <dashboard enable-sort-zone-taborder='true' name='Supply chain management'>
       <style />
       <size sizing-mode='automatic' />
@@ -1730,47 +2081,11 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='98178' id='3' param='vert' type-v2='layout-flow' w='98992' x='504' y='911'>
-            <zone fixed-size='65' h='7403' id='7' is-fixed='true' param='horz' type-v2='layout-flow' w='98992' x='504' y='911'>
-              <zone h='7403' id='36' type-v2='text' w='91750' x='504' y='911'>
-                <formatted-text>
-                  <run fontsize='14'>Supply Chain Management</run>
-                </formatted-text>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone fixed-size='55' h='7403' id='38' is-fixed='true' type-v2='dashboard-object' w='3967' x='92254' y='911'>
-                <button action='tabdoc:goto-sheet window-id=&quot;{EB5A88FA-12DD-4A7D-BC0C-244235D78DAD}&quot;'>
-                  <button-visual-state>
-                    <image-path>Image/arrows-left-6-48.png</image-path>
-                  </button-visual-state>
-                </button>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone fixed-size='44' h='7403' id='37' is-fixed='true' type-v2='dashboard-object' w='3275' x='96221' y='911'>
-                <button action='tabdoc:goto-sheet window-id=&quot;{36A53F32-50DB-42B4-A0F6-6DC15EFD00A1}&quot;'>
-                  <button-visual-state>
-                    <image-path>Image/arrows-right-6-48.png</image-path>
-                  </button-visual-state>
-                </button>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-            </zone>
-            <zone fixed-size='24' h='3644' id='8' is-fixed='true' type-v2='empty' w='98992' x='504' y='8314'>
+          <zone fixed-size='53' h='8740' id='7' is-fixed='true' param='horz' type-v2='layout-flow' w='99166' x='417' y='773'>
+            <zone forceUpdate='true' h='8740' id='36' type-v2='text' w='93175' x='417' y='773'>
+              <formatted-text>
+                <run fontalignment='1' fontname='Tableau Bold' fontsize='20'>Supply Chain Management</run>
+              </formatted-text>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -1778,126 +2093,25 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone fixed-size='731' h='83257' id='9' is-fixed='true' param='horz' type-v2='layout-flow' w='98992' x='504' y='11958'>
-              <zone fixed-size='1372' h='83257' id='34' is-fixed='true' type-v2='layout-basic' w='86398' x='504' y='11958'>
-                <zone h='10707' id='12' param='vert' type-v2='layout-flow' w='86398' x='504' y='11958'>
-                  <zone h='9567' id='33' layout-strategy-id='distribute-evenly' param='horz' type-v2='layout-flow' w='86398' x='504' y='11958'>
-                    <zone h='9567' id='21' name='Sales &amp; Inventory Trends' pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' type-v2='color' w='21599' x='504' y='11959'>
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                    <zone h='9567' id='25' name='Stock Movement' pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='21600' x='22103' y='11959'>
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                    <zone h='9567' id='27' name='Slow Vs Fast' pane-specification-id='1' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' type-v2='color' w='21599' x='43703' y='11959'>
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                    <zone h='9567' id='32' name='Out of stock Vs Over-stocked' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578853392384:nk]' type-v2='color' w='21600' x='65302' y='11959'>
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                  </zone>
-                </zone>
-                <zone h='72550' id='35' param='vert' type-v2='layout-flow' w='86398' x='504' y='22665'>
-                  <zone h='26537' id='16' param='horz' type-v2='layout-flow' w='86398' x='504' y='22665'>
-                    <zone h='26537' id='19' name='Sales &amp; Inventory Trends' show-title='false' w='43199' x='504' y='22665'>
-                      <layout-cache minheight='171' minwidth='100' type-h='scalable' type-w='scalable' />
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                    <zone h='26537' id='22' name='Stock Movement' show-title='false' w='43199' x='43703' y='22665'>
-                      <layout-cache minheight='171' minwidth='100' type-h='scalable' type-w='scalable' />
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                  </zone>
-                  <zone h='23006' id='17' param='horz' type-v2='layout-flow' w='86398' x='504' y='49202'>
-                    <zone h='23006' id='26' name='Slow Vs Fast' show-title='false' w='44392' x='504' y='49202'>
-                      <layout-cache cell-count-w='10' minheight='140' non-cell-size-w='78' type-h='scalable' type-w='cell' />
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                    <zone h='23006' id='28' name='Sufficient Stock' show-title='false' w='41999' x='44896' y='49202'>
-                      <layout-cache cell-count-w='10' minheight='140' non-cell-size-w='40' type-h='scalable' type-w='cell' />
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                  </zone>
-                  <zone h='23006' id='18' param='horz' type-v2='layout-flow' w='86398' x='504' y='72208'>
-                    <zone h='23006' id='30' name='Out of stock Vs Over-stocked' show-title='false' w='86398' x='504' y='72208'>
-                      <layout-cache cell-count-w='10' minheight='140' non-cell-size-w='40' type-h='scalable' type-w='cell' />
-                      <zone-style>
-                        <format attr='border-color' value='#000000' />
-                        <format attr='border-style' value='none' />
-                        <format attr='border-width' value='0' />
-                        <format attr='margin' value='4' />
-                      </zone-style>
-                    </zone>
-                  </zone>
-                </zone>
-              </zone>
-              <zone h='83257' id='11' param='vert' type-v2='layout-flow' w='10579' x='86902' y='11958'>
-                <zone h='7973' id='29' mode='dropdown' name='Sufficient Stock' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]' type-v2='filter' w='10579' x='86902' y='11958'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                  </zone-style>
-                </zone>
-                <zone h='7973' id='24' mode='dropdown' name='Stock Movement' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type-v2='filter' w='10579' x='86902' y='19931'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                  </zone-style>
-                </zone>
-                <zone h='7973' id='23' mode='dropdown' name='Stock Movement' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]' type-v2='filter' w='10579' x='86902' y='27904'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                  </zone-style>
-                </zone>
-              </zone>
+            <zone fixed-size='55' h='8740' id='38' is-fixed='true' type-v2='dashboard-object' w='3282' x='93592' y='773'>
+              <button action='tabdoc:goto-sheet window-id=&quot;{EB5A88FA-12DD-4A7D-BC0C-244235D78DAD}&quot;'>
+                <button-visual-state>
+                  <image-path>Image/arrows-left-6-48.png</image-path>
+                </button-visual-state>
+              </button>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
             </zone>
-            <zone h='3874' id='6' type-v2='empty' w='98992' x='504' y='95215'>
+            <zone fixed-size='44' h='8740' id='37' is-fixed='true' type-v2='dashboard-object' w='2709' x='96874' y='773'>
+              <button action='tabdoc:goto-sheet window-id=&quot;{36A53F32-50DB-42B4-A0F6-6DC15EFD00A1}&quot;'>
+                <button-visual-state>
+                  <image-path>Image/arrows-right-6-48.png</image-path>
+                </button-visual-state>
+              </button>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -1906,6 +2120,112 @@
               </zone-style>
             </zone>
           </zone>
+          <zone fixed-size='2' h='1649' id='45' is-fixed='true' type-v2='empty' w='99166' x='417' y='9513'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='5443' id='43' param='vert' type-v2='layout-flow' w='99166' x='417' y='11162'>
+            <zone fixed-size='32' h='3092' id='44' is-fixed='true' layout-strategy-id='distribute-evenly' param='horz' type-v2='layout-flow' w='99166' x='417' y='11162'>
+              <zone fixed-size='272' h='3092' id='29' is-fixed='true' mode='dropdown' name='Stock levels' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]' type-v2='filter' w='33073' x='417' y='11208'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='339' h='3092' id='24' is-fixed='true' mode='dropdown' name='Stock Movement' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type-v2='filter' w='33073' x='33490' y='11208'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='595' h='3092' id='23' is-fixed='true' mode='dropdown' name='Stock Movement' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]' type-v2='filter' w='33020' x='66563' y='11208'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone fixed-size='470' h='77345' id='9' is-fixed='true' param='horz' type-v2='layout-flow' w='99166' x='417' y='21882'>
+            <zone fixed-size='1032' h='77345' id='34' is-fixed='true' type-v2='layout-basic' w='99166' x='417' y='21882'>
+              <zone h='77345' id='35' param='vert' type-v2='layout-flow' w='99166' x='417' y='21882'>
+                <zone h='39204' id='16' param='horz' type-v2='layout-flow' w='99166' x='417' y='21882'>
+                  <zone h='39204' id='19' name='Sales &amp; Inventory Trends' show-title='false' w='49583' x='417' y='21882'>
+                    <layout-cache minheight='171' minwidth='100' type-h='scalable' type-w='scalable' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone h='39204' id='22' name='Stock Movement' show-title='false' w='49583' x='50000' y='21882'>
+                    <layout-cache minheight='171' minwidth='100' type-h='scalable' type-w='scalable' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone fixed-size='2' h='966' id='47' is-fixed='true' type-v2='empty' w='99166' x='417' y='61086'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='36209' id='17' param='horz' type-v2='layout-flow' w='99166' x='417' y='62052'>
+                  <zone h='36209' id='26' name='Slow Vs Fast' show-title='false' w='50573' x='417' y='62052'>
+                    <layout-cache cell-count-w='10' minheight='140' non-cell-size-w='78' type-h='scalable' type-w='cell' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone h='36209' id='28' name='Stock levels' show-title='false' w='48593' x='50990' y='62052'>
+                    <layout-cache cell-count-w='10' minheight='140' non-cell-size-w='40' type-h='scalable' type-w='cell' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone fixed-size='2' h='966' id='46' is-fixed='true' type-v2='empty' w='99166' x='417' y='98261'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone h='5277' id='53' type-v2='empty' w='99166' x='417' y='16605'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
           <zone-style>
             <format attr='border-color' value='#000000' />
             <format attr='border-style' value='none' />
@@ -1913,16 +2233,20 @@
             <format attr='margin' value='8' />
           </zone-style>
         </zone>
+        <zone h='2773' id='27' name='Slow Vs Fast' pane-specification-id='1' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' type-v2='color' w='27531' x='22762' y='58728' />
+        <zone h='3426' id='25' name='Stock Movement' pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='23013' x='75649' y='18108' />
+        <zone h='5546' id='21' name='Sales &amp; Inventory Trends' pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' type-v2='color' w='26946' x='7866' y='18760' />
+        <zone h='3589' id='52' name='Stock levels' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='27197' x='70795' y='57912' />
       </zones>
       <devicelayouts>
         <devicelayout auto-generated='true' name='Phone'>
-          <size maxheight='1650' minheight='1650' sizing-mode='vscroll' />
+          <size maxheight='1850' minheight='1850' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='42' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98178' id='41' param='vert' type-v2='layout-flow' w='98992' x='504' y='911'>
-                <zone h='7403' id='36' type-v2='text' w='91750' x='504' y='911'>
+            <zone h='100000' id='59' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='97390' id='58' param='vert' type-v2='layout-flow' w='98662' x='669' y='1305'>
+                <zone forceUpdate='true' h='8646' id='36' type-v2='text' w='89039' x='669' y='1305'>
                   <formatted-text>
-                    <run fontsize='14'>Supply Chain Management</run>
+                    <run fontalignment='1' fontname='Tableau Bold' fontsize='20'>Supply Chain Management</run>
                   </formatted-text>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -1932,7 +2256,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='55' h='7403' id='38' type-v2='dashboard-object' w='3967' x='92254' y='911'>
+                <zone fixed-size='55' h='8646' id='38' type-v2='dashboard-object' w='5272' x='89708' y='1305'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{EB5A88FA-12DD-4A7D-BC0C-244235D78DAD}&quot;'>
                     <button-visual-state>
                       <image-path>Image/arrows-left-6-48.png</image-path>
@@ -1946,7 +2270,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='44' h='7403' id='37' type-v2='dashboard-object' w='3275' x='96221' y='911'>
+                <zone fixed-size='44' h='8646' id='37' type-v2='dashboard-object' w='4351' x='94980' y='1305'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{36A53F32-50DB-42B4-A0F6-6DC15EFD00A1}&quot;'>
                     <button-visual-state>
                       <image-path>Image/arrows-right-6-48.png</image-path>
@@ -1960,8 +2284,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='205' h='26537' id='19' is-fixed='true' name='Sales &amp; Inventory Trends' show-title='false' w='43199' x='504' y='22665'>
-                  <layout-cache minheight='171' minwidth='100' type-h='scalable' type-w='scalable' />
+                <zone fixed-size='280' h='36786' id='19' is-fixed='true' name='Sales &amp; Inventory Trends' show-title='false' w='49331' x='669' y='22186'>
+                  <layout-cache minheight='155' minwidth='100' type-h='scalable' type-w='scalable' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1970,7 +2294,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='9567' id='21' name='Sales &amp; Inventory Trends' pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' type-v2='color' w='21599' x='504' y='11959'>
+                <zone h='5546' id='21' name='Sales &amp; Inventory Trends' pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[:Measure Names]' type-v2='color' w='26946' x='7866' y='18760'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1979,7 +2303,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='7973' id='24' mode='dropdown' name='Stock Movement' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type-v2='filter' w='10579' x='86902' y='19931'>
+                <zone fixed-size='339' h='5221' id='24' mode='dropdown' name='Stock Movement' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type-v2='filter' w='32888' x='33556' y='11582'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1988,7 +2312,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='7973' id='23' mode='dropdown' name='Stock Movement' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]' type-v2='filter' w='10579' x='86902' y='27904'>
+                <zone fixed-size='595' h='5221' id='23' mode='dropdown' name='Stock Movement' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Warehouse Location:nk]' type-v2='filter' w='32887' x='66444' y='11582'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1997,8 +2321,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='205' h='26537' id='22' is-fixed='true' name='Stock Movement' show-title='false' w='43199' x='43703' y='22665'>
-                  <layout-cache minheight='171' minwidth='100' type-h='scalable' type-w='scalable' />
+                <zone fixed-size='280' h='36786' id='22' is-fixed='true' name='Stock Movement' show-title='false' w='49331' x='50000' y='22186'>
+                  <layout-cache minheight='155' minwidth='100' type-h='scalable' type-w='scalable' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2007,7 +2331,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='9567' id='25' name='Stock Movement' pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='21600' x='22103' y='11959'>
+                <zone h='3426' id='25' name='Stock Movement' pane-specification-id='2' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='23013' x='75649' y='18108'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2016,8 +2340,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='176' h='23006' id='26' is-fixed='true' name='Slow Vs Fast' show-title='false' w='44392' x='504' y='49202'>
-                  <layout-cache cell-count-w='10' minheight='140' non-cell-size-w='78' type-h='scalable' type-w='cell' />
+                <zone fixed-size='280' h='36460' id='26' is-fixed='true' name='Slow Vs Fast' show-title='false' w='50537' x='669' y='60603'>
+                  <layout-cache cell-count-w='10' minheight='153' non-cell-size-w='59' type-h='scalable' type-w='cell' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2026,7 +2350,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='9567' id='27' name='Slow Vs Fast' pane-specification-id='1' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' type-v2='color' w='21599' x='43703' y='11959'>
+                <zone h='2773' id='27' name='Slow Vs Fast' pane-specification-id='1' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387112202245:nk]' type-v2='color' w='27531' x='22762' y='58728'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2035,7 +2359,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='7973' id='29' mode='dropdown' name='Sufficient Stock' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]' type-v2='filter' w='10579' x='86902' y='11958'>
+                <zone fixed-size='272' h='5221' id='29' mode='dropdown' name='Stock levels' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[my:Sales Date:ok]' type-v2='filter' w='32887' x='669' y='11582'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2044,8 +2368,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='176' h='23006' id='28' is-fixed='true' name='Sufficient Stock' show-title='false' w='41999' x='44896' y='49202'>
-                  <layout-cache cell-count-w='10' minheight='140' non-cell-size-w='40' type-h='scalable' type-w='cell' />
+                <zone fixed-size='280' h='36460' id='28' is-fixed='true' name='Stock levels' show-title='false' w='48110' x='51206' y='60603'>
+                  <layout-cache cell-count-w='10' minheight='153' non-cell-size-w='30' type-h='scalable' type-w='cell' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2054,17 +2378,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='176' h='23006' id='30' is-fixed='true' name='Out of stock Vs Over-stocked' show-title='false' w='86398' x='504' y='72208'>
-                  <layout-cache cell-count-w='10' minheight='140' non-cell-size-w='40' type-h='scalable' type-w='cell' />
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone h='9567' id='32' name='Out of stock Vs Over-stocked' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_483292578853392384:nk]' type-v2='color' w='21600' x='65302' y='11959'>
+                <zone h='3589' id='52' name='Stock levels' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='27197' x='70795' y='57912'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2098,9 +2412,9 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='91344' id='7' param='horz' type-v2='layout-flow' w='98992' x='504' y='7745'>
-            <zone h='91344' id='5' type-v2='layout-basic' w='88916' x='504' y='7745'>
-              <zone h='91344' id='3' name='Inventory Overview' show-title='false' w='88916' x='504' y='7745'>
+          <zone h='90611' id='7' param='horz' type-v2='layout-flow' w='98662' x='669' y='8084'>
+            <zone h='90611' id='5' type-v2='layout-basic' w='85273' x='669' y='8084'>
+              <zone h='90611' id='3' name='Inventory Overview' show-title='false' w='85273' x='669' y='8084'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2109,8 +2423,8 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone fixed-size='160' h='91344' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='10076' x='89420' y='7745'>
-              <zone h='7973' id='8' mode='dropdown' name='Inventory Overview' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type-v2='filter' w='10076' x='89420' y='7745'>
+            <zone fixed-size='160' h='90611' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='13389' x='85942' y='8084'>
+              <zone h='8483' id='8' mode='dropdown' name='Inventory Overview' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type-v2='filter' w='13389' x='85942' y='8084'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2118,7 +2432,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='6720' id='9' name='Inventory Overview' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='10076' x='89420' y='15718'>
+              <zone h='10767' id='9' name='Inventory Overview' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='13389' x='85942' y='16567'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2128,7 +2442,7 @@
               </zone>
             </zone>
           </zone>
-          <zone h='6834' id='12' type-v2='text' w='88917' x='504' y='911'>
+          <zone h='6779' id='12' type-v2='text' w='88620' x='669' y='1305'>
             <formatted-text>
               <run fontsize='14'>Inventory Overview</run>
             </formatted-text>
@@ -2139,7 +2453,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='6834' id='13' type-v2='dashboard-object' w='4975' x='94521' y='911'>
+          <zone h='6779' id='13' type-v2='dashboard-object' w='4960' x='94371' y='1305'>
             <button action='tabdoc:goto-sheet window-id=&quot;{EB5A88FA-12DD-4A7D-BC0C-244235D78DAD}&quot;'>
               <button-visual-state>
                 <image-path>Image/arrows-right-6-48.png</image-path>
@@ -2152,7 +2466,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='6834' id='14' type-v2='dashboard-object' w='5100' x='89421' y='911'>
+          <zone h='6779' id='14' type-v2='dashboard-object' w='5082' x='89289' y='1305'>
             <button action='tabdoc:goto-sheet window-id=&quot;{778AF177-9332-4FC4-8345-CC0875B58CB1}&quot;'>
               <button-visual-state>
                 <image-path>Image/arrows-left-6-48.png</image-path>
@@ -2177,9 +2491,9 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='700' minheight='700' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='18' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98178' id='17' param='vert' type-v2='layout-flow' w='98992' x='504' y='911'>
-                <zone h='6834' id='12' type-v2='text' w='88917' x='504' y='911'>
+            <zone h='100000' id='28' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='97390' id='27' param='vert' type-v2='layout-flow' w='98662' x='669' y='1305'>
+                <zone h='6779' id='12' type-v2='text' w='88620' x='669' y='1305'>
                   <formatted-text>
                     <run fontsize='14'>Inventory Overview</run>
                   </formatted-text>
@@ -2191,7 +2505,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='6834' id='14' type-v2='dashboard-object' w='5100' x='89421' y='911'>
+                <zone h='6779' id='14' type-v2='dashboard-object' w='5082' x='89289' y='1305'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{778AF177-9332-4FC4-8345-CC0875B58CB1}&quot;'>
                     <button-visual-state>
                       <image-path>Image/arrows-left-6-48.png</image-path>
@@ -2205,7 +2519,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='6834' id='13' type-v2='dashboard-object' w='4975' x='94521' y='911'>
+                <zone h='6779' id='13' type-v2='dashboard-object' w='4960' x='94371' y='1305'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{EB5A88FA-12DD-4A7D-BC0C-244235D78DAD}&quot;'>
                     <button-visual-state>
                       <image-path>Image/arrows-right-6-48.png</image-path>
@@ -2219,7 +2533,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='7973' id='8' mode='dropdown' name='Inventory Overview' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type-v2='filter' w='10076' x='89420' y='7745'>
+                <zone h='8483' id='8' mode='dropdown' name='Inventory Overview' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[none:Product Name:nk]' type-v2='filter' w='13389' x='85942' y='8084'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2228,7 +2542,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='280' h='91344' id='3' is-fixed='true' name='Inventory Overview' show-title='false' w='88916' x='504' y='7745'>
+                <zone fixed-size='280' h='90611' id='3' is-fixed='true' name='Inventory Overview' show-title='false' w='85273' x='669' y='8084'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2237,7 +2551,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='6720' id='9' name='Inventory Overview' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='10076' x='89420' y='15718'>
+                <zone h='10767' id='9' name='Inventory Overview' pane-specification-id='0' param='[federated.0obrl8215v7sd614gkzv20mtftbr].[usr:Calculation_1289718387086069760:nk]' type-v2='color' w='13389' x='85942' y='16567'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2260,7 +2574,7 @@
       <simple-id uuid='{2C3A9512-4274-4E05-8487-0F589C1AD03F}' />
     </dashboard>
   </dashboards>
-  <windows source-height='44'>
+  <windows pres-mode='true' source-height='33'>
     <window class='worksheet' name='KPIs'>
       <cards>
         <edge name='left'>
@@ -2317,11 +2631,6 @@
         </edge>
       </cards>
       <viewpoint>
-        <current-page>
-          <multibucket>
-            <bucket>2024</bucket>
-          </multibucket>
-        </current-page>
         <zoom type='entire-view' />
       </viewpoint>
       <simple-id uuid='{FF823B2D-5274-4A79-8F6B-75740AEA3117}' />
@@ -2391,7 +2700,7 @@
       </viewpoint>
       <simple-id uuid='{265CABC3-3788-4740-9EB0-1897301137CC}' />
     </window>
-    <window class='worksheet' name='Sufficient Stock'>
+    <window class='worksheet' name='Stock levels'>
       <cards>
         <edge name='left'>
           <strip size='190'>
@@ -2581,9 +2890,6 @@
     </window>
     <window class='dashboard' maximized='true' name='Supply chain management'>
       <viewpoints>
-        <viewpoint name='Out of stock Vs Over-stocked'>
-          <zoom type='entire-view' />
-        </viewpoint>
         <viewpoint name='Sales &amp; Inventory Trends'>
           <zoom type='entire-view' />
         </viewpoint>
@@ -2593,31 +2899,31 @@
         <viewpoint name='Stock Movement'>
           <zoom type='entire-view' />
         </viewpoint>
-        <viewpoint name='Sufficient Stock'>
+        <viewpoint name='Stock levels'>
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='30' />
+      <active id='22' />
       <simple-id uuid='{778AF177-9332-4FC4-8345-CC0875B58CB1}' />
     </window>
     <window class='dashboard' name='Warehouse management'>
       <viewpoints>
         <viewpoint name='Inventory Overview'>
-          <current-page>
-            <multibucket>
-              <bucket>2024</bucket>
-            </multibucket>
-          </current-page>
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='8' />
+      <active id='-1' />
       <simple-id uuid='{36A53F32-50DB-42B4-A0F6-6DC15EFD00A1}' />
+    </window>
+    <window class='dashboard' name='Store Overview'>
+      <viewpoints />
+      <active id='-1' />
+      <simple-id uuid='{AC33ECD9-BF38-4DC9-AFEE-DC30CEA6642C}' />
     </window>
     <window class='dashboard' name='Inventory Analysis'>
       <viewpoints>
         <viewpoint name='Inventory Fulfillment '>
-          <zoom type='fit-width' />
+          <zoom type='entire-view' />
         </viewpoint>
         <viewpoint name='KPIs'>
           <zoom type='entire-view' />
@@ -2626,8 +2932,13 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='12' />
+      <active id='16' />
       <simple-id uuid='{EB5A88FA-12DD-4A7D-BC0C-244235D78DAD}' />
+    </window>
+    <window class='dashboard' name='Story 1'>
+      <viewpoints />
+      <active id='5' />
+      <simple-id uuid='{DB3609DE-D7E2-444A-BCDF-A65F98069B59}' />
     </window>
   </windows>
 </workbook>
