@@ -4,7 +4,7 @@
 This project is a data visualization dashboard that tracks and manages inventory data. It provides insights into stock levels, product trends, sales performance, and restocking needs. The dashboard was built using Python, Pandas, and Tableau for visualization.
 
 ## Live Link
-[Access the Dashboard Here](https://public.tableau.com/app/profile/ivy.mbogo/viz/YoutubeWatchHistoryAnalysis2018-2025/YoutubeAnalytics)
+[Access the Dashboard Here](https://public.tableau.com/app/profile/ivy.mbogo/viz/InventoryManagement_17394375468630/Story1)
 
 ## Process
 ### 1. Extracting Data
